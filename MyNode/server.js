@@ -5,13 +5,23 @@ const childProcess = require('child_process');
 
 const hostname = '127.0.0.1'; // 本机地址
 const port = 3000; // 端口
-
+const fs = require('fs')
 // 创建一个服务器
-const server = http.createServer((req, res) => {
-  res.statusCode = 200; // 设置响应状态码
-  res.setHeader('Content-Type', 'text/plain'); // 设置响应头
-  res.end('Hello World\n'); // 向前台输出内容
+  const server = http.createServer((request, response) => {
+    response.write('a')
+    response.write('b')
+    response.write('c')
+    response.end('d')
+ 
 });
+fs.writeFile('./test.txt', 'test', (error) => {
+  if (error) {
+    console.log('文件写入失败', error)
+  } else {
+    console.log('文件写入成功')
+  }
+})
+
 
 // 开启监听
 server.listen(port, hostname, () => {
